@@ -11,7 +11,7 @@ process.stdin.on('data', function (data) {
 
 process.stdin.on('end', function () {
   input_stdin_array = input_stdin.split("\n");
-  main();
+  main();    
 });
 
 function readLine() {
@@ -20,17 +20,17 @@ function readLine() {
 
 /////////////// ignore above this line ////////////////////
 
+
+
 function birthdayCakeCandles(n, ar) {
-  var counts = {};
-
-  ar.forEach(function(x) {
-      counts[x] = (counts[x] || 0) + 1;
-  });
-
-  var toAr = Object.keys(counts).map(function(key){ return counts[key]; });
-  var result = Math.max.apply(Math, toAr);
-
-  return result;
+  let largest = 0;
+  let counts = {};
+  for(let i=0; i< ar.length; i++) {
+    let num = ar[i];
+    if (num > largest) largest = num;
+    counts[num] = (counts[num] || 0) + 1 
+  }
+  return counts[largest];
 }
 
 function main() {
@@ -39,5 +39,4 @@ function main() {
   ar = ar.map(Number);
   var result = birthdayCakeCandles(n, ar);
   process.stdout.write("" + result + "\n");
-
 }
